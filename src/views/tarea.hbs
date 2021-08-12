@@ -1,0 +1,66 @@
+<div class="container">
+    <div class="row">
+        <h3 class="col-md-10 align-self-center text-center">Lista de tareas</h3>
+        <!--FORM-->
+        <div class="col-md-10">
+            <div class="card">
+                <div class="card-body">
+                    <form action="/" method="POST">
+                        <input type="hidden" name="_id" value="{{tarea._id}}">
+                        <div class="form-group">
+                            <input class="form-control" type="text" name="nombre" placeholder="Nueva tarea"
+                                value="{{tarea.nombre}}" id="nombre" autocomplete="off">
+                        </div>
+                        <button class="btn btn-success" type="submit" id="enviar">                          
+                            Guardar
+                        </button>                      
+                    </form>
+                </div>
+            </div>
+
+            {{!-- Lista --}}
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Actividades </th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                <tbody>
+                    {{#each tareas}}
+                    <tr>
+                        <td>{{this.nombre}}</td>
+                        
+                        <td>
+                          
+                            <a href="/{{this._id}}" class="btn btn-warning">
+                                Editar
+                            </a>
+
+                            <a href="/delete/{{this._id}}"
+                                class="btn btn-danger {{#if this.estado}}enabled{{else}}enabled{{/if}}">
+                                Eliminar
+                            </a>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script>
+
+    var positionCounter = 1; Handlebars.registerHelper('position', function () { return positionCounter++; });
+
+
+    document.getElementById('enviar').addEventListener('click', function (e) {
+        let nombre = document.querySelector('#nombre').value
+        if (nombre.trim().length == 0) {
+            alert("El nombre de la tarea no puede estar vacio")
+            e.preventDefault()
+        }
+    })
+</script>
