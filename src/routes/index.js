@@ -6,7 +6,6 @@ router.get('/', getTarea)
 router.post('/', createTarea)
 router.get('/:id', getTareaById)
 
-//router.get('/cambiar-estado/:id', updateEstadoTarea)
 router.get('/delete/:id', deleteTarea)
 router.put('/usuarios/:id', updateTarea)
 
